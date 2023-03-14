@@ -1,11 +1,14 @@
 'use client';
 
+import AuthModal from '@/components/Modal/Auth/AuthModal';
+import AuthButtons from './AuthButtons';
+
 export default function RightContent() {
   return (
     <>
-      <div className="flex justify-center ">
-      {/**<AuthButtons /> */} 
-      AuthButtons
+      <AuthModal/> 
+      <div className="flex justify-center items-center">
+        <AuthButtons />
       </div>
     </>
   );
