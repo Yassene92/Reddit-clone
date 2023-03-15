@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 
 export default function AuthButtons() {
   const setAuthModelState = useSetRecoilState(authModalState);
+
   return (
     <>
       <div className="hidden sm:block">

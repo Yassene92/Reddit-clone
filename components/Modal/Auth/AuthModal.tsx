@@ -2,10 +2,13 @@
 import { authModalState } from '@/atoms/authModalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { HiOutlineXMark } from 'react-icons/hi2';
 import { useRecoilState } from 'recoil';
+import AuthInputs from './AuthInputs';
 
 const AuthModal = () => {
   const [modalState, setModalState] = useRecoilState(authModalState);
+
   const handleClose = () =>
     setModalState((prev) => ({
       ...prev,
@@ -29,7 +32,7 @@ const AuthModal = () => {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex items-center justify-center min-h-full p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -39,28 +42,28 @@ const AuthModal = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                  <div className="inset-0 flex justify-end">
+                    <button type="button" className="" onClick={handleClose}>
+                      <HiOutlineXMark />
+                    </button>
+                  </div>
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="pl-3 text-lg font-medium leading-6 text-gray-900 "
                   >
-                    Payment successful
+                    {modalState.view === 'login' && 'Log In'}
+                    {modalState.view === 'signup' && 'Sign Up'}
+                    {modalState.view === 'resetPassword' && 'Reset Password'}
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
+                  <div className="block p-4 mt-2">
+                    <p className="text-xs text-blackl">
+                      By continuing, you agree are setting up a Reddit account
+                      and agree to our User Agreement and Privacy Policy.
                     </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={handleClose}
-                    >
-                      Got it, thanks!
-                    </button>
+                    <AuthInputs />
+                    {/**  <OAuthButtons /> */}
+                    {/**  <ResetPassword /> */}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

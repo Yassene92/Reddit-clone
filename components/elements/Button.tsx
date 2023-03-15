@@ -46,9 +46,9 @@ const Button = ({
       case 'outline-primary':
         return 'bg-white text-violet-500 border border-violet-500 hover:text-white hover:bg-violet-700  ';
       case 'btn-primary':
-        return ' ring-1  hover:ring-blue-500  font-bold border-solid  text-blue-500   rounded-5xl ';
+        return ' ring-1  hover:ring-blue-500  font-semi-bold  border-solid  text-blue-500   rounded-5xl ';
       case 'bg-primary':
-        return ' bg-blue-500  hover:bg-blue-600  font-bold border-solid text-white    rounded-5xl ';
+        return ' bg-blue-500  hover:bg-blue-600  semi-bold border-solid text-white    rounded-5xl ';
 
       default:
         return 'bg-violet-500 hover:bg-violet-700 hover:bg-gra text-white shadow shadow-violet-600/25 hover:shadow-violet-600/75';
