@@ -18,7 +18,7 @@ const AuthModal = () => {
   return (
     <>
       <Transition appear show={modalState.open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={handleClose}>
+        <Dialog as="div" className="relative z-10 " onClose={handleClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -60,9 +60,9 @@ const AuthModal = () => {
                     <p className="text-xs text-blackl">
                       By continuing, you agree are setting up a Reddit account
                       and agree to our User Agreement and Privacy Policy.
-                    </p>
-                    <AuthInputs />
+                      </p>
                     {/**  <OAuthButtons /> */}
+                    <AuthInputs />
                     {/**  <ResetPassword /> */}
                   </div>
                 </Dialog.Panel>

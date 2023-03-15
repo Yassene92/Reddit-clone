@@ -11,8 +11,8 @@ export interface IButtonProps
     | 'outline-warning'
     | 'outline-success'
     | 'outline-primary'
-    | 'btn-primary'
-    | 'bg-primary';
+    | 'ring-primary'
+    | 'orange-btn';
   circular?: boolean;
   paddingLess?: boolean;
 }
@@ -45,13 +45,13 @@ const Button = ({
         return 'bg-white text-amber-400 border border-amber-500 hover:text-white hover:bg-amber-500  ';
       case 'outline-primary':
         return 'bg-white text-violet-500 border border-violet-500 hover:text-white hover:bg-violet-700  ';
-      case 'btn-primary':
+      case 'ring-primary':
         return ' ring-1  hover:ring-blue-500  font-semi-bold  border-solid  text-blue-500   rounded-5xl ';
-      case 'bg-primary':
-        return ' bg-blue-500 hover:bg-blue-600 font-semi-bold border-solid text-white rounded-5xl ';
+      case 'orange-btn':
+        return 'bg-orange-700 hover:bg-orange-600 text-white ';
 
       default:
-        return 'bg-violet-500 hover:bg-violet-700 hover:bg-gra text-white shadow shadow-violet-600/25 hover:shadow-violet-600/75';
+        return 'bg-blue-500 hover:bg-blue-600 font-semi-bold border-solid text-white rounded-5xl';
     }
   };
   return (
