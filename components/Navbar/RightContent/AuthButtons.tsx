@@ -13,13 +13,13 @@ export default function AuthButtons() {
         <Button
           onClick={() => setAuthModelState({ open: true, view: 'login' })}
           variant="ring-primary"
-          className="mr-3 sm:px-5 md:px-8 sm:py-0.5 md:py-1  "
+          className="mr-3 px-5 py-1.5 sm:px-8 sm:py-1 "
         >
           log In
         </Button>
         <Button
           onClick={() => setAuthModelState({ open: true, view: 'signup' })}
-          className="mr-3 sm:px-5 md:px-8 sm:py-0.5 md:py-1 "
+          className="mr-3 px-5 py-1.5 sm:px-8 sm:py-1 "
         >
           Sign Up
         </Button>

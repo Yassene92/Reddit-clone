@@ -1,5 +1,5 @@
 import '../styles/global.css';
-import localFont from '@next/font/local';
+import localFont from 'next/font/local';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar/Navbar';
 import RecoilProvider from '../utils/providers';

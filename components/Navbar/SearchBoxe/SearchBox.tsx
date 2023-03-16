@@ -18,7 +18,7 @@ export default function SearchBox() {
             placeholder="Search Reddit"
             autoComplete="off"
             aria-label="Search Reddit"
-            className="w-full px-3 py-2 pl-10 pr-3 text-sm placeholder-gray-500 border outline-none h-9 rounded-2xl ring-0 hover:ring-1 focus:ring-blue-500 ring-blue-500 bg-gray-50 text-blackl "
+            className="w-full px-3 py-2 pl-10 pr-3 text-sm placeholder-gray-500 border focus:outline-none h-9 rounded-2xl ring-0 hover:ring-1 focus:ring-blue-500 ring-blue-500 bg-gray-50 text-blackl "
           />
         </div>
       </form>

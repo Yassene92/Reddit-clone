@@ -22,15 +22,15 @@ export default function Login() {
     <>
       <form onSubmit={onSubmit} className="py-4 space-y-3 ">
         <input
-          className="w-full h-10 py-2 pl-6 placeholder-gray-500 bg-gray-100 border-none outline-none rounded-2xl ring-0 hover:ring-1 ring-gray-300 text-blackl placeholder:hover:-translate-y-3 placeholder:hover:scale-90 text-md "
+          className="w-full h-10 px-4 py-2 placeholder-gray-500 transition-all duration-300 ease-in-out bg-gray-100 border border-gray-300 rounded-lg text-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-scale"
           type="text"
-          placeholder="Username"
-          name="Username"
+          placeholder="username"
+          name="username"
           required
           onChange={onChange}
         />
         <input
-          className="w-full h-10 py-2 pl-4 pr-3 placeholder-gray-500 bg-gray-100 border-none outline-none rounded-2xl ring-0 hover:ring-1 ring-gray-300 text-blackl placeholder:hover:-translate-y-3 placeholder:hover:scale-90 text-md "
+          className="w-full h-10 px-4 py-2 text-lg placeholder-gray-400 transition-all duration-300 ease-in-out bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transform-gpu hover:scale-105 hover:shadow-md"
           type="password"
           placeholder="password"
           name="password"
