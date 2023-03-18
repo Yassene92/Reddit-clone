@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import { useRecoilState } from 'recoil';
 import AuthInputs from './AuthInputs';
+import OAuthButtons from './OAuthButtons';
 
 const AuthModal = () => {
   const [modalState, setModalState] = useRecoilState(authModalState);
@@ -60,8 +61,13 @@ const AuthModal = () => {
                     <p className="text-xs text-blackl">
                       By continuing, you agree are setting up a Reddit account
                       and agree to our User Agreement and Privacy Policy.
-                      </p>
-                    {/**  <OAuthButtons /> */}
+                    </p>
+                    <OAuthButtons />
+                    <div className="flex items-center justify-center">
+                      <span className="flex-1 border-t border-gray-400 " />
+                      <span className="px-4 font-bold text-gray-400">OR</span>
+                      <span className="flex-1 border-t border-gray-400" />
+                    </div>
                     <AuthInputs />
                     {/**  <ResetPassword /> */}
                   </div>
