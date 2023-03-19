@@ -1,14 +1,22 @@
 'use client';
-
-import AuthModal from '@/components/Modal/Auth/AuthModal';
+import Button from '@/components/elements/Button';
+import AuthModal from '@/components/Modal/Auth';
+import { auth } from '@/firebase/clientApp';
+import { signOut, User } from 'firebase/auth';
 import AuthButtons from './AuthButtons';
+import Icon from './Icons';
 
-export default function RightContent() {
+type RightContentProps = {
+  user?: User | null;
+}
+//
+export default function RightContent({ user }: RightContentProps) {
   return (
     <>
       <AuthModal/> 
-      <div className="flex justify-center items-center">
-        <AuthButtons />
+      <div className="flex items-center justify-center">
+        {user ? <Icon/> : <AuthButtons/>}
+        {/**<Menu/> */}
       </div>
     </>
   );

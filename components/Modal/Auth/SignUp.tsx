@@ -4,8 +4,8 @@ import Button from '@/components/elements/Button';
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { auth } from '@/firebase/clientApp';
-import { AuthError, AuthErrorCodes } from 'firebase/auth';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { FIREBASE_ERRORS } from '@/firebase/errors';
 
 export default function SignUp() {
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -24,21 +24,15 @@ export default function SignUp() {
   };
   // firebase logic
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const { email, password } = signForm;
     e.preventDefault();
     if (signForm.password !== signForm.confirmPassword) {
       setFormError('Passwords do not match');
       return;
     }
-    try {
-      await createUserWithEmailAndPassword(signForm.email, signForm.password);
-      setAuthModalState((prev) => ({ ...prev, open: false }));
-    } catch (error) {
-      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
-        setFormError('Cannot create user, email already in use');
-      } else {
-        console.log("user creation encountered a", error);
-      }
-    }
+
+    await createUserWithEmailAndPassword(email, password);
+    //  setAuthModalState((prev) => ({ ...prev, open: false }));
   };
   return (
     <>
@@ -46,7 +40,7 @@ export default function SignUp() {
         <input
           className="w-full h-10 px-4 py-2 placeholder-gray-500 transition-all duration-300 ease-in-out bg-gray-100 border border-gray-300 rounded-lg text-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-scale"
           type="email"
-          placeholder="email"
+          placeholder="Email"
           name="email"
           value={signForm.email}
           required
@@ -55,7 +49,7 @@ export default function SignUp() {
         <input
           className="w-full h-10 px-4 py-2 placeholder-gray-500 transition-all duration-300 ease-in-out bg-gray-100 border border-gray-300 rounded-lg text-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-scale"
           type="password"
-          placeholder="password"
+          placeholder="Password"
           name="password"
           value={signForm.password}
           required
@@ -70,16 +64,15 @@ export default function SignUp() {
           required
           onChange={onChange}
         />
-        {formError && (
-          <p className="flex justify-center text-xs text-red-500">
-            {formError}
-          </p>
-        )}
+        <p className="flex justify-center text-xs text-red-500">
+          {formError ||
+            FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
+        </p>
         <Button type="submit" variant="orange-btn" className="w-full h-10 ">
-          {loading ? 'loading...' : 'Sign Up'}
+          {loading ? 'submit...' : 'Sign Up'}
         </Button>
         <p className="text-xs">
-          <span className=" text-blackl">Already a redditor?</span>
+          <span className="px-1 text-blackl">Already a redditor?</span>
           <span
             onClick={() =>
               setAuthModalState((prev) => ({

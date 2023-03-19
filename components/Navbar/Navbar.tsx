@@ -1,11 +1,13 @@
 'use client';
-
+import { auth } from '@/firebase/clientApp';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import RightContent from './RightContent/RightContent';
 import SearchBox from './SearchBoxe/SearchBox';
 
 export default function Navbar() {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <div className="flex bg-white h-12 pt-1.5 pb-3 pl-4">
       <Link href={'/'} className="flex">
@@ -28,9 +30,9 @@ export default function Navbar() {
           priority
         />
       </Link>
-      <SearchBox />
       {/**<Directory/> */}
-      <RightContent />
+      <SearchBox />
+      <RightContent user={user} />
     </div>
   );
 }
