@@ -5,6 +5,7 @@ import { auth } from '@/firebase/clientApp';
 import { signOut, User } from 'firebase/auth';
 import AuthButtons from './AuthButtons';
 import Icon from './Icons';
+import UserMenu from './UserMenu';
 
 type RightContentProps = {
   user?: User | null;
@@ -16,7 +17,7 @@ export default function RightContent({ user }: RightContentProps) {
       <AuthModal/> 
       <div className="flex items-center justify-center">
         {user ? <Icon/> : <AuthButtons/>}
-        {/**<Menu/> */}
+       <UserMenu user={user}/> 
       </div>
     </>
   );

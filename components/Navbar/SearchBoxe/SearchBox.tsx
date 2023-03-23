@@ -1,14 +1,17 @@
 'use client';
-import { HiMagnifyingGlass } from "react-icons/hi2";
+import { User } from 'firebase/auth';
+import { HiMagnifyingGlass } from 'react-icons/hi2';
 
+type SearchBoxProps = {
+  user?: User | null;
+};
 
-
-export default function SearchBox() {
+export default function SearchBox({ user }: SearchBoxProps) {
   return (
-    <div className="flex items-center justify-center flex-grow ml-8 ">
-      <form action="" className="w-full max-w-md">
+    <div className="flex items-center justify-center flex-grow mx-4 ">
+      <form className={`${user ? 'w-full' : 'max-w-screen-md '}`}>
         <div className="relative flex items-center text-gray-400 focus-within:text-gray-600">
-          <HiMagnifyingGlass  className="absolute w-5 h-5 ml-3 pointer-events-none" />
+          <HiMagnifyingGlass className="absolute w-5 h-5 ml-3 pointer-events-none" />
           <input
             type="text"
             name="search"
@@ -22,4 +25,3 @@ export default function SearchBox() {
     </div>
   );
 }
-

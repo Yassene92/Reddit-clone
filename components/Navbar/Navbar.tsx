@@ -3,6 +3,7 @@ import { auth } from '@/firebase/clientApp';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Directory from './Directory/Directory';
 import RightContent from './RightContent/RightContent';
 import SearchBox from './SearchBoxe/SearchBox';
 
@@ -30,8 +31,8 @@ export default function Navbar() {
           priority
         />
       </Link>
-      {/**<Directory/> */}
-      <SearchBox />
+      {user && <Directory />}
+      <SearchBox user={user} />
       <RightContent user={user} />
     </div>
   );
