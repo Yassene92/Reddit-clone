@@ -1,4 +1,3 @@
-'use client';
 import { BsArrowUpRightCircle, BsChatDots } from 'react-icons/bs';
 import { GrAdd } from 'react-icons/gr';
 import {
