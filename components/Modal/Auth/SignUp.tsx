@@ -1,11 +1,12 @@
-'use client';
 import { authModalState } from '@/atoms/authModalAtom';
 import Button from '@/components/elements/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { auth } from '@/firebase/clientApp';
+import { auth, firestore } from '@/firebase/clientApp';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { FIREBASE_ERRORS } from '@/firebase/errors';
+import { User } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
 
 export default function SignUp() {
   const setAuthModalState = useSetRecoilState(authModalState);
@@ -15,7 +16,7 @@ export default function SignUp() {
     confirmPassword: '',
   });
   const [formError, setFormError] = useState('');
-  const [createUserWithEmailAndPassword, user, loading, authError] =
+  const [createUserWithEmailAndPassword, userCred, loading, authError] =
     useCreateUserWithEmailAndPassword(auth);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +33,21 @@ export default function SignUp() {
     }
 
     await createUserWithEmailAndPassword(email, password);
-    //  setAuthModalState((prev) => ({ ...prev, open: false }));
   };
+  //add user to firestore same as Functions in firebase
+  const createUserDocument = async (user: User) => {
+    await addDoc(
+      collection(firestore, 'users'),
+      JSON.parse(JSON.stringify(user))
+    );
+  };
+
+  useEffect(() => {
+    if (userCred) {
+      createUserDocument(userCred.user);
+    }
+  }, [userCred]);
+
   return (
     <>
       <form onSubmit={onSubmit} className="py-4 space-y-3 ">

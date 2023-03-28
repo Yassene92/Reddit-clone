@@ -1,11 +1,26 @@
 import { FcGoogle } from 'react-icons/fc';
 import Button from '@/components/elements/Button';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { auth } from '@/firebase/clientApp';
+import { useEffect } from 'react';
+import { auth, firestore } from '@/firebase/clientApp';
 import { FIREBASE_ERRORS } from '@/firebase/errors';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { User } from 'firebase/auth';
 
 export default function OAuthButtons() {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, userCred, loading, error] =
+    useSignInWithGoogle(auth);
+
+  const createUserDocument = async (user: User) => {
+    const userDocRef = doc(firestore, 'users', user.uid);
+    await setDoc(userDocRef, JSON.parse(JSON.stringify(user)));
+  };
+
+  useEffect(() => {
+    if (userCred) {
+      createUserDocument(userCred.user);
+    }
+  }, [userCred]);
 
   return (
     <div className="py-2 space-y-2">

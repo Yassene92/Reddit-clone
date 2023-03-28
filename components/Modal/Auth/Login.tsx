@@ -1,4 +1,3 @@
-'use client';
 import { authModalState } from '@/atoms/authModalAtom';
 import Button from '@/components/elements/Button';
 import { auth } from '@/firebase/clientApp';
