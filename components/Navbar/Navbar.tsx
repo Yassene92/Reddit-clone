@@ -9,6 +9,9 @@ import SearchBox from './SearchBoxe/SearchBox';
 
 export default function Navbar() {
   const [user, loading, error] = useAuthState(auth);
+  
+
+  
   return (
     <div className="flex bg-white h-12 pt-1.5 pb-3 pl-4">
       <Link href={'/'} className="flex">

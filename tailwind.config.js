@@ -19,6 +19,7 @@ module.exports = {
       colors: {
         redd: '#FF3c00',
         blackl: '#1a1a1b',
+        blue1: '#33a8ff',
       },
       fontFamily: {
         OpenSans: ['var(--font-Open)', 'sans-serif'],

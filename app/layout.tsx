@@ -2,7 +2,7 @@ import '../styles/global.css';
 import localFont from 'next/font/local';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar/Navbar';
-import RecoilProvider from '../utils/providers';
+import RecoilProvider from '../utils/recoilProvider/providers';
 
 const openSans = localFont({
   src: '../public/fonts/OpenSans-Regular.ttf',
