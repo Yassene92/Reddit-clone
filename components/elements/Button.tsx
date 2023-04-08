@@ -2,7 +2,7 @@ export interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: React.ReactNode;
-  variant?: 'primary' | 'ring-primary' | 'orange-btn';
+  variant?: 'primary' | 'ring-primary' | 'orange-btn'| 'solid';
   circular?: boolean;
   paddingLess?: boolean;
 }
@@ -25,9 +25,12 @@ const Button = ({
 
       case 'orange-btn':
         return 'bg-orange-700 hover:bg-orange-600 text-white ';
+        case 'solid':
+          return 'bg-blue-500 hover:bg-blue-600 font-semibold border border-blue-500 text-white rounded-full transition-all duration-300 ease-in-out'
 
       default:
         return ' bg-blue-500 hover:bg-blue-600 font-semibold border border-blue-500 text-white rounded-full transition-all duration-300 ease-in-out';
+
     }
   };
   return (

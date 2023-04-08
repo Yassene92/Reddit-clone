@@ -1,16 +1,21 @@
-'use client';
+'use client'
 import { Community } from '@/atoms/commuityAtom';
 import Image from 'next/image';
 import { FaReddit } from 'react-icons/fa';
 import Button from '../elements/Button';
+import useCommunityData from '@/hooks/useCommunityData';
 
 type HeaderProps = {
   communityData: Community;
 };
 
 export default function Header({ communityData }: HeaderProps) {
-  const isJoined = false; //read from our communitySnippet
-  
+  const { communityStateValue, onJoinOrLeaveCommunity } = useCommunityData();
+  const isJoined = !!communityStateValue.mySnippets.find(
+    (item) => item.communityId === communityData.id
+  );
+  // const isJoined = false; //read from our communitySnippet
+
   return (
     <div className="flex flex-col w-full h-36">
       <div className="bg-blue1 h-1/2 " />
@@ -29,12 +34,12 @@ export default function Header({ communityData }: HeaderProps) {
             </span>
           </div>
           <div className="px-2 py-2">
-            <Button className="w-24 h-7"
-            onClick={() => {
-              console.log('clicked');
-            }}
+            <Button
+              variant={isJoined ? 'primary' : 'solid'}
+              className="w-24 h-7"
+              onClick={() => onJoinOrLeaveCommunity(communityData, isJoined)}
             >
-              {isJoined ? 'Joined' : 'join'}{' '}
+              {isJoined ? 'Joined' : 'Join'}
             </Button>
           </div>
         </div>

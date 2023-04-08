@@ -13,7 +13,7 @@ interface PageProps {
   };
 }
 
-export const dynamic = 'force-dynamic';
+//export const dynamic = 'force-dynamic';
 
 async function getCommunityData(community: string) {
   try {
@@ -39,8 +39,7 @@ export default async function Page({ params: { community } }: PageProps) {
   return (
     <>
       <Header communityData={communityData} />
-
-      <PageContent >
+      <PageContent>
         <>
           <div>LHS hhjhjhhjj</div>
           <div>hello</div>

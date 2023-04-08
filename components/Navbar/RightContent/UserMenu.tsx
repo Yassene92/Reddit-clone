@@ -10,15 +10,22 @@ import { VscAccount } from 'react-icons/vsc';
 import { IoSparkles } from 'react-icons/io5';
 import { CgProfile } from 'react-icons/cg';
 import { MdOutlineLogin } from 'react-icons/md';
-import { useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { authModalState } from '@/atoms/authModalAtom';
+import { communityState } from '@/atoms/commuityAtom';
 
 type UserMenuProps = {
   user?: User | null;
 };
 
 export default function UserMenu({ user }: UserMenuProps) {
+  const resetCommunityState = useResetRecoilState(communityState);
   const setAuthModalState = useSetRecoilState(authModalState);
+  const logout = async () => {
+    await signOut(auth);
+    // clear Community state
+    resetCommunityState();
+  };
   return (
     <div className="flex items-center justify-center">
       <Menu as="div" className="relative inline-block text-left">
@@ -89,9 +96,7 @@ export default function UserMenu({ user }: UserMenuProps) {
                         className={`${
                           active ? 'bg-gray-500 text-white' : 'text-gray-900'
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                        onClick={() => {
-                          signOut(auth);
-                        }}
+                        onClick={logout}
                       >
                         {active ? (
                           <MdOutlineLogin
