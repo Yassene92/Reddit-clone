@@ -9,8 +9,6 @@ type RightContentProps = {
 };
 //
 export default function RightContent({ user }: RightContentProps) {
-
-
   return (
     <>
       <AuthModal />

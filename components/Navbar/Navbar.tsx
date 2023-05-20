@@ -4,8 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Directory from './Directory/Directory';
-import RightContent from './RightContent/RightContent';
+//import RightContent from './RightContent/RightContent';
 import SearchBox from './SearchBoxe/SearchBox';
+import dynamic from 'next/dynamic';
+
+const RightContent = dynamic(() => import('./RightContent/RightContent'), {
+  ssr: false,
+  loading: () => <p className='pr-8'>loading...</p>,
+})
 
 export default function Navbar() {
   const [user, loading, error] = useAuthState(auth);

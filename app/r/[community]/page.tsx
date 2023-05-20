@@ -6,6 +6,7 @@ import { Community } from '@/atoms/commuityAtom';
 import CommunityNotFound from '@/components/Community/NotFond';
 import Header from '@/components/Community/Header';
 import PageContent from '@/components/layout/PageContent';
+import CreatPostLink from '@/components/Community/CreatPostLink';
 
 interface PageProps {
   params: {
@@ -32,7 +33,6 @@ async function getCommunityData(community: string) {
 
 export default async function Page({ params: { community } }: PageProps) {
   const communityData: Community = await getCommunityData(community);
-  console.log(communityData);
 
   if (!communityData) return <CommunityNotFound />;
 
@@ -41,11 +41,7 @@ export default async function Page({ params: { community } }: PageProps) {
       <Header communityData={communityData} />
       <PageContent>
         <>
-          <div>LHS hhjhjhhjj</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
-          <div>hello</div>
+          <CreatPostLink />
         </>
         <>
           <div>RHS</div>

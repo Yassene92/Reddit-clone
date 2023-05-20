@@ -3,7 +3,6 @@ import localFont from 'next/font/local';
 import clsx from 'clsx';
 import Navbar from '@/components/Navbar/Navbar';
 import RecoilProvider from '../utils/recoilProvider/providers';
-import ClientOnly from '@/components/ClientOnly';
 
 const openSans = localFont({
   src: '../public/fonts/OpenSans-Regular.ttf',
@@ -14,6 +13,7 @@ const openSans = localFont({
 export const metadata = {
   title: 'Reddit Clone',
   description: 'clone of Reddit by Next js and tailwind',
+
   icons: {
     shortcut: '/favicon.ico',
   },
@@ -31,9 +31,7 @@ export default function RootLayout({
     >
       <body>
         <RecoilProvider>
-        <ClientOnly>
           <Navbar />
-        </ClientOnly>
           {children}
         </RecoilProvider>
       </body>
